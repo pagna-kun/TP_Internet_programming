@@ -1,0 +1,13 @@
+.grid{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+.box{
+    display: grid;
+    height: 80px;
+    background-color: aqua;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin: 10px;
+}

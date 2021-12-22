@@ -1,0 +1,32 @@
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+.content{
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+}
+.small{
+    font-size: 5vw;
+    padding: 3vw;
+    background-color: #f27d6f;
+    border-radius: 5px;
+}
+.big{
+    font-size: 10vw;
+    padding: 3vw;
+    background-color: #8fcf42;
+    border-radius: 5px;
+}
+@media only screen and (max-width:400px) {
+    .big{
+        display: none;
+    }
+}
+@media only screen and (min-width:401px) {
+    .small{
+        display: none;
+    }
+}

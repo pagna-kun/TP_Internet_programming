@@ -1,0 +1,20 @@
+.row-wrapper{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    background-color: #8c8787;
+}
+.column-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+.box{
+    display: flex;
+    height: 80px;
+    background-color: #543bf5;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin: 10px;
+}
