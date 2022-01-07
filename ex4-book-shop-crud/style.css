@@ -1,0 +1,39 @@
+body{
+    display: flex;
+}
+
+/* left display */
+.add_book {
+    margin: 5px;
+    width: 20%;
+    border-radius: 5px;
+    background-color: #b9bdba;
+    padding: 20px;
+}
+.add_book p{
+    margin: 0px;
+    margin-top: 10px;
+}
+.add_book button {
+    background: #b9bdba;
+    border-radius: 2px;
+    margin-top: 5px;
+    width: fit-content;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+/* right display */
+.list_book{
+    display: grid;
+    background-color: #b9bdba;
+    width: 80%;
+    grid-template-columns: 25% 25% 25% 25%;
+    padding: 10px;
+}
+.list_book .item{
+    background: white;
+    width: 120px;
+    margin: 10px 10px;
+    padding: 10px 10px;
+} 

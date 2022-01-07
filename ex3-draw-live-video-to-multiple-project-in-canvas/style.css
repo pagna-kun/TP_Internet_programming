@@ -13,6 +13,13 @@ p{
     margin: 0px;
     padding: 0px;
 }
+#project{
+    margin: 5px;
+    margin-left: 150px;
+    padding: 0px;
+    width: fit-content;
+    background-color: black;
+}
 button{
     width: 70px;
     height: 20px;
@@ -20,6 +27,12 @@ button{
     border: 0px;
 }
 #canvasVideo{
+    border: 1px solid black;
+    width: 500px;
+    height: 350px;
+    background-color: white;
+}
+#canvasVideoProject{
     border: 1px solid black;
     width: 500px;
     height: 350px;
