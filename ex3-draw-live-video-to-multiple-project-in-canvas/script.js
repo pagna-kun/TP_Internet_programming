@@ -49,6 +49,12 @@ function loop(){
 }
 function clearImage(){
     if(!playing){
-        ctx.clearRect(0, 0, canvas.width, canvas.height);   
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctxProject.clearRect(video, 0, 0, 213, 240, 0, 0, 99, 74);
+        ctxProject.clearRect(video, 213, 0, 213, 240, 100, 0, 99, 74);
+        ctxProject.clearRect(video, 426, 0, 213, 240, 200, 0, 100, 74);
+        ctxProject.clearRect(video, 0, 240, 213, 240, 0, 75, 99, 75);
+        ctxProject.clearRect(video, 213, 240, 213, 240, 100, 75, 99, 75);
+        ctxProject.clearRect(video, 426, 240, 213, 240, 200, 75, 100, 75);
     }
 }

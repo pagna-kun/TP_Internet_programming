@@ -11,7 +11,7 @@
     <script src="script.js"></script>
 </head>
 
-<body>
+<body onload="listing();">
     <div class="add_book">
         <p>Name:</p>
         <input type="text" id="name" placeholder="c programming">
@@ -25,9 +25,8 @@
         <button id="add" onclick="addBook();">Add</button>
     </div>
 
-    <div class="list_book">
-        <div class="item">
-        </div>
+    <div class="list_book" id="list_book">
+        
     </div>
 
 </body>
