@@ -35,6 +35,7 @@ function listing(){
     //list all objects that exist in json array 
     books.forEach(book => {
         console.log(book);
+        document.getElementById('list_book').innerHTML = "";
         document.getElementById('list_book').innerHTML += 
             `<div class="item">
                 <div class="button">
