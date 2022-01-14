@@ -77,7 +77,8 @@ function addBook(){
 
 //update book
 function updateBook(index){
-    
+    //popup dialog box
+
 }
 
 //delete book
