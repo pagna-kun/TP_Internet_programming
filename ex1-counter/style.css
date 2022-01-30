@@ -1,0 +1,38 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+.wrapper{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+    border: 1px solid #ebebeb;
+    width: fit-content;
+    height: 450px;
+    background-color: aliceblue;
+}
+.wrapper h1{
+    font-size: 40px;
+    color: #241e4a;
+}
+#counter{
+    margin: 30px;
+    font-size: 80px;
+    color: #158704;
+}
+button{
+    border: 1px solid black;
+    border-radius: 3px;
+    height: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px;
+    background-color: aliceblue;
+}
+#increase{
+    background-color: black;
+    color: white;
+}
