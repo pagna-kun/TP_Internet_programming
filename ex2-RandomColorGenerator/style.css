@@ -65,7 +65,7 @@
 .text{
     display: flex;
 }
-#square{
+.square{
     width: 15px;
     height: 15px;
     margin-left: 5px;

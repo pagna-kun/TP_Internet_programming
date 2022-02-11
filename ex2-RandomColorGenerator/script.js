@@ -25,8 +25,7 @@ class Color {
         
         for(let i=this.records.length-1; i>=0; i--){
             // for(let i=0; i<this.records.length; i++){
-                document.getElementById("display").innerHTML += `<div class="text">${this.records[i]}<div id="square"></div> </div>`
-                document.getElementById("square").style.backgroundColor += this.records[i];
+                document.getElementById("display").innerHTML += `<div class="text">${this.records[i]}<div class="square" style="background-color: ${this.records[i]};"></div> </div>`
         }
         
     }
