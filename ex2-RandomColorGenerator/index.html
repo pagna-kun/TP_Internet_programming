@@ -10,16 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="wrapper">
+<body onload="color.displayColor()">
+    <div class="wrapper" id="wrapper">
         <div class="head">Random Color Genterator</div>
         <div class="background">
             <h1>Background Color :</h1>
-            <div>#112312</div>
+            <div id="code">#112312</div>
         </div>
-        <button>GENTERATE</button>
-        <button>RESET</button>
-        <div class="display">dfsf</div>    
+        <div class="button">
+            <button id="generate" onclick="color.generate()">GENTERATE</button>
+            <button id="reset" onclick="color.reset()">RESET</button>
+        </div>
+        <div class="display" id="display"></div>    
     </div> 
 </body>
 <script src="./script.js"></script>
