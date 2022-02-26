@@ -1,3 +1,4 @@
+
 // var books = [
 //     {
 //         'name'      :   'C programming',
@@ -33,7 +34,6 @@ var books = JSON.parse(localStorage.getItem("books"));
 
 //listing
 function listing(){
-    // var books = JSON.parse(localStorage.getItem("books"));
     //index for delete or update function and it must in listing funtion because it is represent to index ot array
     var index = 0;
     //clear the display on list_book div so it not display overloading when call listing again
@@ -83,14 +83,37 @@ function addBook(){
 //update book
 function updateBook(index){
     //popup dialog box
-
+    var dialog = document.getElementById('updateDialog');    
+    dialog.show();    
+    document.getElementById('hide').onclick = function() {    
+        dialog.close();    
+    };
+    document.getElementById('submit').onclick = function() {
+        //get data from dialog
+        let name = document.getElementById('nameD').value;
+        let category = document.getElementById('categoryD').value;
+        let price = document.getElementById('priceD').value;
+        let book = {
+            'name'      :   name,
+            'category'  :   category,
+            'price'     :   price
+        };
+        // delete and insert back updated data
+        books.splice(index, 1, book);
+        localStorage.setItem("books", JSON.stringify(books));
+        listing(); 
+        //close dialog
+        dialog.close();
+    }
 }
 
 //delete book
 function deleteBook(index){
     books.splice(index,1);
-    localStorage.setItem("books",JSON.stringify(books));
+    localStorage.setItem("books", JSON.stringify(books));
     listing();
 }
 
+    
 
+    
