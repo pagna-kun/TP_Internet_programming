@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Book Shop</title>
-        <link rel="stylesheet" href="asset/style.css">
-    </head>
-    
-    <body onload="listing();">
-        <div class="add_book">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Shop</title>
+    <link rel="stylesheet" href="asset/style.css">
+</head>
+
+<body>
+    <div class="add_book">
         <p>Name:</p>
         <input type="text" id="name" placeholder="c programming">
-
+        
         <p>Catagory:</p>
         <input type="text" id="category" placeholder="coding">
         
@@ -27,8 +27,22 @@
         
     </div>
     
-    <script src="asset/script.js"></script>
+    <dialog id="updateDialog">
+        <div class="dialogHeader">
+            Please input the update information 
+        </div>
+        <p>Name:</p>
+        <input type="text" id="nameD" placeholder="c programming">
+        <p>Catagory:</p>
+        <input type="text" id="categoryD" placeholder="coding">
+        <p>Price:</p>
+        <input type="text" id="priceD" placeholder="40000 riels"><br>
+        <button type="submit" id="submit">Submit</button>
+        <button id="hide">Close</button>
+    </dialog>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="asset/script.js"></script>
 </body>
 
 </html>

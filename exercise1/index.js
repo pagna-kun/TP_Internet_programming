@@ -4,7 +4,7 @@ const { readFile } = require('fs')
 
 const app = express()
 
-//declare the path for asset
+//declare the path or else the path will not be usable
 app.use(express.static(__dirname + '/src'))
 //set route and read file
 app.get('/', function (req, res) { 
