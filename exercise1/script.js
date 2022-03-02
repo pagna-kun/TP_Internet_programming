@@ -21,7 +21,5 @@ fetch('https://jsonplaceholder.typicode.com/photos').then((response) => {
 })
 
 
-//detail page
-document.getElementById("detail")
 
 
