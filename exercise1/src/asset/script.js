@@ -1,3 +1,5 @@
+document.getElementsByClassName('list_book')[0].style.display = 'none';
+document.getElementsByClassName('loading')[0].style.display = 'flex';
 //fetch all data and listing it
 fetch('https://jsonplaceholder.typicode.com/photos').then((response) => {
     return response.json();
@@ -18,6 +20,8 @@ fetch('https://jsonplaceholder.typicode.com/photos').then((response) => {
                     </div>`
             });
     document.getElementById('list_book').innerHTML += template;  
+    document.getElementsByClassName('loading')[0].style.display = 'none';
+    document.getElementsByClassName('list_book')[0].style.display = 'grid';
 })
 
 
