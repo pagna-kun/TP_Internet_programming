@@ -1,17 +1,27 @@
+//for use route
 var express = require('express');
 var router = express.Router();
 
-router.post('/',function(req,res,next) {
+const { login } = require('../service/login');
+const { register } = require('../service/register');
+
+//home page 
+router.get('/', function(req,res,next) {
     console.log("router up");
-    res.send("hello from api");
+    res.send("Hello, this is API");
 });
-router.post('/register',function(req,res,next) {
-    console.log("router up");
-    res.send("hello from api");
+//login page
+router.post('/login', function(req,res,next) {
+    const {email, password} = req.body;
+    // console.log(email, password);
+    const result = login(email, password);
+    res.json(result);
+});
+//register page
+router.post('/register', function(req,res,next) {
+    const param = req.body;
+    const result = register(param);
+    res.json(result);
 });
 
-
-
-module.exports = {
-    router
-}
+module.exports = router;
