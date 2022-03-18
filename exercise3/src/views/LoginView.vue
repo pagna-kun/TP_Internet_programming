@@ -32,7 +32,20 @@ export default {
   },
   methods:{
     login(){
-      console.log(this.email, this.password);
+      fetch('http://localhost:3001/login', {
+        method: 'POST',
+        body: JSON.stringify({
+          "email":this.email, 
+          "password":this.password
+        })
+      }).then(res => {
+        return res.json();
+      }).then((data) => {
+        console.log(data);
+        if(data.success == true){
+          this.$router.push({name : 'home'})
+        }
+      })
     }
   }
 }

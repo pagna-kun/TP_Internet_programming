@@ -9,30 +9,66 @@
       </div>
       <div class="input">
         <label for="email">Email</label><br />
-        <input id="email" type="text" placeholder="Enter email" />
+        <input id="email" v-model="email" type="text" placeholder="Enter email" />
       </div>
       <div class="input">
-        <label for="password">Username</label><br />
-        <input id="password" type="text" placeholder="Username" />
+        <label for="username">Username</label><br />
+        <input id="username" v-model="username" type="text" placeholder="Username" />
       </div>
       <div class="input">
-        <label for="password">First name</label><br />
-        <input id="password" type="text" placeholder="First name" />
+        <label for="firstname">First name</label><br />
+        <input id="firstname" v-model="firstname" type="text" placeholder="First name" />
       </div>
       <div class="input">
-        <label for="password">Last name</label><br />
-        <input id="password" type="text" placeholder="Last name" />
+        <label for="lastname">Last name</label><br />
+        <input id="lastname" v-model="lastname" type="text" placeholder="Last name" />
       </div>
       <div class="input">
         <label for="password">Password</label><br />
-        <input id="password" type="text" placeholder="Create your password" />
+        <input id="password" v-model="password" type="text" placeholder="Create your password" />
       </div>
       <div class="input">
-        <button id="login" onclick="login();">Login</button>
+        <button id="login" v-on:click="register();">Login</button>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "Register",
+  data(){
+    return{
+      email: '',
+      username: '',
+      firstname: '',
+      lastname: '',
+      password: ''
+    }
+  },
+  methods:{
+    register(){
+      fetch('http://localhost:3001/register', {
+        method: 'POST',
+        body: JSON.stringify({
+          "email": this.email,
+          "username": this.username,
+          "firstname": this.firstname,
+          "lastname": this.lastname,
+          "password": this.password
+        })
+      }).then(res => {
+        return res.json();
+      }).then((data) => {
+        console.log(data);
+        if(data.success == true){
+          this.$router.push({name: 'login'})
+        }
+      })
+    }
+  }
+}
+</script>
 
 <style>
 .wrappers {

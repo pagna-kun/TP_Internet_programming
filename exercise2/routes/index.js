@@ -12,14 +12,14 @@ router.get('/', function(req,res,next) {
 });
 //login page
 router.post('/login', function(req,res,next) {
-    const {email, password} = req.body;
-    // console.log(email, password);
+    const param = JSON.parse(req.body);
+    const {email, password} = param;
     const result = login(email, password);
     res.json(result);
 });
 //register page
 router.post('/register', function(req,res,next) {
-    const param = req.body;
+    const param = JSON.parse(req.body);
     const result = register(param);
     res.json(result);
 });
