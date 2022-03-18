@@ -1,17 +1,18 @@
 {
-  "name": "exercise1",
-  "version": "0.0.0",
+  "name": "exercise2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview --port 5050"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon index.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "vue": "^3.2.31",
-    "vue-router": "^4.0.12"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^2.2.2",
-    "vite": "^2.8.4"
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.3"
   }
 }
