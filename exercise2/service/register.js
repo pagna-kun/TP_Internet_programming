@@ -1,4 +1,5 @@
 const users = require('../models/users')
+const {encryptData} = require('../config/encrypt')
 
 const register = async (param) => {
     const {email, username, firstname, lastname, password } = param;
@@ -13,14 +14,16 @@ const register = async (param) => {
             throw "username is already used"
         }
 
+        //encryptjs: encrypt password
+        var hash = encryptData(password);
+
         const newUser = {
             email,
             username,
             firstname,
             lastname,
-            password
+            password: hash
         }
-
         const createUser = await users.create(newUser)
 
         return {

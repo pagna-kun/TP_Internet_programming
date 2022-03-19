@@ -1,4 +1,5 @@
 const users = require('../models/users')
+const {decryptData} = require('../config/encrypt')
 
 const login = async (email, password) => {
     try {
@@ -18,7 +19,7 @@ const login = async (email, password) => {
         if(!existed){
             throw "Email is incorrected."
         } 
-        if(existed.password != password){
+        if(!decryptData(password,existed.password)){
             throw "Password is incorrected."
         }
         return {
