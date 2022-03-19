@@ -1,23 +1,35 @@
-const { readUsers } = require("../db/db");
+const users = require('../models/users')
 
-const login = (email, password) => {
-    //read all user
-    const users = readUsers();
-    //compare user
-    for(let i=0; i<users.length; i++){
-        let user = users[i];
-        if(user.email == email){
-            if(user.password == password){
-                return {
-                    success : true,
-                    data : user
-                }
-            }
+const login = async (email, password) => {
+    try {
+        // //check both email and password at the sametime
+        // var existed = await users.findOne({ email, password })
+        // console.log(existed.password);
+        // if(!existed){
+        //     throw "Email or Password is incorrected."
+        // }
+        // return {
+        //     success: true,
+        //     data: existed
+        // }
+
+        //check email then check password and give difference
+        var existed = await users.findOne({email})
+        if(!existed){
+            throw "Email is incorrected."
+        } 
+        if(existed.password != password){
+            throw "Password is incorrected."
         }
-    };
-    return {
-        success : false,
-        err : "Your Email or Password is incorrect"
+        return {
+            success: true,
+            data: existed
+        }
+    } catch (err) {
+        return {
+            success: false,
+            err: err
+        }
     }
 }
 

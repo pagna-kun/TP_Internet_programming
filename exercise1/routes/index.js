@@ -11,16 +11,16 @@ router.get('/', function(req,res,next) {
     res.send("Hello, this is API");
 });
 //login page
-router.post('/login', function(req,res,next) {
+router.post('/login', async function(req,res,next) {
     const param = JSON.parse(req.body);
     const {email, password} = param;
-    const result = login(email, password);
+    const result = await login(email, password);
     res.json(result);
 });
 //register page
-router.post('/register', function(req,res,next) {
+router.post('/register', async function(req,res,next) {
     const param = JSON.parse(req.body);
-    const result = register(param);
+    const result = await register(param);
     res.json(result);
 });
 

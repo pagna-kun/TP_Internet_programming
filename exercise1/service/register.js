@@ -1,28 +1,37 @@
-const { readUsers, writeUser } = require("../db/db");
+const users = require('../models/users')
 
-const register = (param) => {
+const register = async (param) => {
     const {email, username, firstname, lastname, password } = param;
-    var users = readUsers();
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i];
-        if(user.email == email){
-            return {
-                success : false,
-                err : "Email is already used"
-            }
+    
+    try{
+        var existed = await users.findOne({ email })
+        if(existed){
+            throw "Email is already used";
         }
-        if(user.username == username){
-            return {
-                success : false,
-                err : "Username is already exist"
-            }
+        existed = await users.findOne({ username })
+        if(existed){
+            throw "username is already used"
         }
-    }
-    users.push(param);
-    writeUser(users);
-    return {
-        success : true,
-        data : param
+
+        const newUser = {
+            email,
+            username,
+            firstname,
+            lastname,
+            password
+        }
+
+        const createUser = await users.create(newUser)
+
+        return {
+            success: true,
+            data: createUser
+        }
+    }catch(err){
+        return {
+            success: false,
+            err: err
+        }
     }
 }
 

@@ -11,6 +11,7 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.text())
 
+require('./config/db')()
 app.use(require('./routes'));
 
 app.listen(port, () => console.log("App on http://localhost:3001"));
