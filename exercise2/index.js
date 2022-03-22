@@ -14,4 +14,4 @@ app.use(bodyParser.text())
 require('./config/db')()
 app.use(require('./routes'));
 
-app.listen(port, () => console.log("App on http://localhost:3001"));
+app.listen(port, () => console.log(`App on http://localhost:${port}`));
