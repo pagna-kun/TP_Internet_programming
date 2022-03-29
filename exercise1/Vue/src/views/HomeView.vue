@@ -11,7 +11,16 @@ export default {
   name: 'home',
   methods: {
     logout(){
-      this.$router.push({name: 'login'})
+      fetch('http://localhost:3001/logout', {
+        method: 'POST',
+        credentials: "include",
+      }).then(res => {
+        return res.json()
+      }).then(data => {
+        if(data.success == true){
+          this.$router.push({name: 'login'})
+        }
+      })
     }
   }
 }

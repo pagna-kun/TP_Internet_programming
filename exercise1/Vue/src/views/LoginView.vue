@@ -34,6 +34,7 @@ export default {
     login(){
       fetch('http://localhost:3001/login', {
         method: 'POST',
+        credentials: "include",
         body: JSON.stringify({
           "email":this.email, 
           "password":this.password
