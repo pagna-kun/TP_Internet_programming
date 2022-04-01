@@ -1,3 +1,13 @@
+const Jwt = require('jsonwebtoken')
+
+const currentUser = (req, res, next) => {
+    if (!req.session.jwtToken)
+      throw "You must sign In~"
+    const user = Jwt.verify(req.session.jwtToken, 't0kenEncrypti0n')
+    req.currentUser = user;
+    next()
+}
+
 const ensureSignedIn = (req, res, next) => {
     if (!req.session.jwtToken) {
         return res.json({
@@ -20,5 +30,6 @@ const ensureSignedOut = (req, res, next) => {
 
 module.exports = {
     ensureSignedIn,
-    ensureSignedOut
+    ensureSignedOut,
+    currentUser
 }

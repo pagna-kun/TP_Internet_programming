@@ -9,7 +9,9 @@ const { logout } = require('../service/logout')
 const { getUser } = require('../service/getUser')
 const { joiValidation } = require('../middleware/joiValidation');
 const { loginSchema, registerSchema } = require('../schemas/index')
-const {ensureSignedIn, ensureSignedOut} = require('../middleware/auth');
+const {ensureSignedIn, ensureSignedOut, currentUser} = require('../middleware/auth');
+const { func } = require('joi');
+const userService = require('../service/user')
 
 //home page 
 router.get('/', function(req,res,next) {
@@ -21,8 +23,10 @@ router.post('/login', ensureSignedOut ,joiValidation(loginSchema) ,async functio
     const param = JSON.parse(req.body);
     const {email, password} = param;
     const result = await login(email, password);
-    const token = jwt.sign(param, "t0kenEncrypti0n");
-    req.session.jwtToken = token;
+    if(result.success){
+        const token = jwt.sign(param, "t0kenEncrypti0n");
+        req.session.jwtToken = token;
+    }
     res.json(result);
 });
 //register page
@@ -34,7 +38,6 @@ router.post('/register', ensureSignedOut, joiValidation(registerSchema), async f
 //logout page
 router.post('/logout', ensureSignedIn, function(req, res, next){
     const result = logout(req.session);
-    console.log("cookie", req.cookies);
     res.clearCookie('token')
     res.json(result);
 })
@@ -44,4 +47,38 @@ router.get('/user/:id', ensureSignedIn, async function(req, res, next){
     result = await getUser(userId)
     return res.json(result)
 })
+//me
+router.get('/me', currentUser, async function(req, res, next){
+    const { currentUser } = req;
+    const result = await userService.findByOne(currentUser.email)
+    return res.json(result)
+})
+router.get('/findall', ensureSignedIn, async function(req, res, next){
+    const result = await userService.findall();
+    return res.json(result)
+})
+router.post('/update-password', currentUser, async function(req, res, next){
+    const email = req.currentUser.email
+    const param = JSON.parse(req.body);
+    const newPassword = param
+    const result = await userService.updatePass(newPassword, email)
+    return res.json(result)
+})
+router.post('/update-user', currentUser, async function(req, res){
+    const email = req.currentUser.email
+    const param = JSON.parse(req.body);
+    const newInfo = param
+    const result = await userService.updateUser(newInfo, email)
+    return res.json(result)
+})
+router.post('/delete-user', currentUser, async function(req,res){
+    const email = req.currentUser.email
+    const result = await userService.deleteUser(email);
+    if(result.success){
+        logout(req.session);
+        res.clearCookie('token')
+    }
+    return res.json(result)
+})
+
 module.exports = router;
