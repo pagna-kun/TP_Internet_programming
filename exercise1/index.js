@@ -1,34 +1,28 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors')
-const app = express();
+var express = require('express')
+var bodyParser = require('body-parser')
+var cors = require('cors')
+var session = require('express-session')
+var cookieParser = require('cookie-parser')
 
-app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true
+var app = express()
+const port = 3001;
+const oneHour = 1000*60*60;
+
+app.use(session({
+    secret: "SecretKeyIsEnCrypt",
+    saveUninitialized: true,
+    cookie: {maxAge: oneHour},
+    resave: false,
+    name: "token"
 }))
+app.use(cookieParser())
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.text())
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-// parse application/json
-app.use(bodyParser.json());
-
-// Connect session
-require('./configs/session')(app);
-
-// Connect mongodb
-require('./configs/db')();
-
+require('./config/db')()
 app.use(require('./routes'));
 
-app.use((err, req, res, next) => {
-  return res.json({
-    success: false,
-    code: 0,
-    error: err
-  })
-})
-
-
-app.listen(process.env.PORT || 3001, () => console.log('App avaiable on http://localhost:3001'))
-
+app.listen(port, () => console.log(`App on http://localhost:${port}`));
