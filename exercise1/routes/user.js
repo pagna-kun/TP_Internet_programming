@@ -4,7 +4,7 @@ const auth = require('../middlewares/auth');
 const { } = require('../schemas');
 var router = express.Router();
 const userService = require('../services/user');
-const { logout } = require('../../exercise1/service/logout');
+const { logout } = require('../services/logout');
 
 // all users
 router.get('/all', auth.ensureSignedIn, async (req, res) => {
