@@ -1,4 +1,5 @@
 const Products = require("../models/products")
+const mongoose = require('mongoose')
 
 const findById = async (id) => {
   try {
@@ -15,19 +16,49 @@ const findById = async (id) => {
   }
 }
 
-const findAll = async ()=>{
-  try {
-    const products = await Products.find()
-    return {
-      success: true,
-      data: products
-    };
-  } catch (err) {
-    return {
-      success: false,
-      error: err.message
-    }
-  }
+const findAll = async (category = '', item = '') => {
+  let matchCond = {};
+  if(category) matchCond['category'] = mongoose.Types.ObjectId(category)
+  if(item) matchCond['item'] = mongoose.Types.ObjectId(item)
+
+  const products = await Products.aggregate([
+    {
+      "$match": matchCond
+    },
+    {
+      $lookup: {
+        from: "prices",
+        localField: "_id",
+        foreignField: "product",
+        as: "prices"
+      },
+
+    },
+    {
+      $lookup: {
+        from: "categories",
+        localField: "category",
+        foreignField: "_id",
+        as: "category"
+      },
+    },
+    {
+
+      $lookup: {
+        from: "items",
+        localField: "item",
+        foreignField: "_id",
+        as: "item"
+      }
+    },
+    { "$unwind": "$category" },
+    { "$unwind": "$item" },
+  ])
+
+  if (!products?.length)
+    return []
+
+  return products
 }
 
 const create = async (newProduct) => {

@@ -10,6 +10,11 @@ router.get('/all', async (req, res) => {
   const result = await categoryService.findAll();
   res.json(result);
 })
+// Categorized items
+router.get('/categorized-items', async (req, res) => {
+  const result = await categoryService.findCategorizedItems()
+  res.json(result);
+})
 
 router.get('/:id', auth.ensureSignedIn, async function (req, res, next) {
   const { id } = req.params;

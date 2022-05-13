@@ -31,6 +31,33 @@ const findAll = async () => {
   }
 }
 
+const findCategorizedItems = async () => {
+  return await Categories.aggregate([
+    {
+      $lookup: {
+        from: "items",
+        localField: "_id",
+        foreignField: "category",
+        as: "items"
+      }
+    },
+    {
+      $project: {
+        _id: 1,
+        name: 1,
+        desc: 1,
+        imageUrl: 1,
+        items: {
+          _id: 1,
+          name: 1,
+          category: 1,
+          desc: 1,
+        }
+      }
+    }
+  ])
+}
+
 const create = async (newCategory) => {
   try{
     const category = await Categories.create(newCategory);
@@ -85,5 +112,6 @@ module.exports = {
   update,
   remove,
   findAll,
-  create
+  create,
+  findCategorizedItems
 }

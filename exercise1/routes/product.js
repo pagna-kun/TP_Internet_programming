@@ -5,10 +5,10 @@ const { } = require('../schemas');
 var router = express.Router();
 const productService = require('../services/product');
 
-// all users
-router.get('/all', async (req, res) => {
-  const result = await productService.findAll()
-  res.json(result)
+router.get('/all/:category?/:item?', async (req, res) => {
+  const { category, item } = req.params;
+  const result = await productService.findAll(category, item);
+  res.json(result);
 })
 
 router.get('/:id', auth.ensureSignedIn, async function (req, res, next) {
