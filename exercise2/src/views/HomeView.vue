@@ -12,12 +12,16 @@ export default {
   async mounted() {
     this.categories = await categoriesApi.getCategoryItem();
     this.products = await productsApi.getAllProduct("", "");
-    console.log(this.categories);
+    
     
   },
   methods: {
     async onClick(categoryId, itemId){
       this.products = await productsApi.getAllProduct(categoryId, itemId)
+    },
+    toDashboard(){
+      this.$router.push('/dashboard')
+      
     }
   }
 }
@@ -26,9 +30,11 @@ export default {
 <template>
   <div>
     <div class="header">
-      <div>
+      <div> 
         លេខមួយ.com 
-        </div> </div>
+        <button @click="toDashboard()">Dashboard</button> 
+      </div> 
+    </div>
     <div class="content">
       <div class="sideBar">
         <ul>
@@ -112,5 +118,14 @@ img{
   width: 50%;
   text-align: right;
   padding-right: 20px;
+}
+button{
+  position: absolute;
+  right: 20px;
+  top: 14px;
+  width: 120px;
+  height: 40px;
+  border: none;
+  
 }
 </style>
